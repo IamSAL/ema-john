@@ -1,0 +1,41 @@
+.product{
+    padding: 30px;
+    border-bottom: 0.5px solid gray;
+    display: flex;
+    .main-image{
+        width: 30%;
+        img{
+          
+            width: 100%;
+            text-align: center;
+        }
+    }
+    .description{
+        margin-left: 20px;
+        .name{
+            color: blue;
+            font-weight: normal;
+        }
+    }
+    .actions{
+        .details{
+            span{
+                display: block;
+                margin:10px 0px;
+            }
+            button{
+                &:hover{
+                    background-color: rgb(247, 172, 10);
+                }
+                cursor: pointer;
+                border: 1px solid rgb(209, 209, 209);
+                padding:10px 40px;
+                background-color: rgb(255, 182, 24);
+            }
+        }
+       display: flex;
+       .rating{
+           padding-left: 20px;
+       }
+    }
+}

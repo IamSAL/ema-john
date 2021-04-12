@@ -1,0 +1,23 @@
+.searchbar{
+    z-index: 999;
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    margin: unset;
+    background-color: rgb(51, 51, 51);
+    input{
+        
+        width: 70%;
+        padding: 2px;
+        border-radius: 5px;
+        background-color: white;
+    }
+    span{
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        color: white;
+    }
+}

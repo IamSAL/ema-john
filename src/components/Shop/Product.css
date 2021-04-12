@@ -1,0 +1,43 @@
+.product {
+  padding: 30px;
+  border-bottom: 0.5px solid gray;
+  display: flex;
+}
+.product .main-image{
+ 
+}
+.product .description{
+  width: 75%;
+}
+.product .main-image img {
+  width: 100%;
+  text-align: center;
+}
+.product .description {
+  margin-left: 20px;
+}
+.product .description .name {
+  color: blue;
+  font-weight: normal;
+}
+.product .actions {
+  display: flex;
+}
+.product .actions .details span {
+  display: block;
+  margin: 10px 0px;
+}
+.product .actions .details button {
+  cursor: pointer;
+  border: 1px solid #d1d1d1;
+  padding: 10px 40px;
+  background-color: #ffb618;
+}
+.product .actions .details button:hover {
+  background-color: #f7ac0a;
+}
+.product .actions .rating {
+  padding-left: 20px;
+}
+
+/*# sourceMappingURL=Product.css.map */
