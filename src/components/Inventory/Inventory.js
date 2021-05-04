@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import './Inventory.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { Link, useRouteMatch, Switch, Route, useLocation } from 'react-router-dom'
+import { Link, useRouteMatch, Switch, Route, useLocation, Redirect } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import EnhancedTable from './InventoryTable';
 import Product from '../Shop/Product'
 export const Inventory = (props) => {
-    // console.log(props.features)
+
     const [count, setcount] = useState(6)
     const location = useLocation();
     const { Products, setProducts } = props.features;
-    console.log(Products)
+
     let match = useRouteMatch();
     return (
         <>
@@ -114,43 +115,53 @@ export const Inventory = (props) => {
 
 
                     {/* Products */}
-                    <Switch>
+                    <TransitionGroup>
+                        <CSSTransition
+                            key={location.key}
+                            classNames="page"
+                            timeout={300}
+                        >
+                            <Switch location={location}>
 
-                        <Route path={`${match.path}/details`}>
-                            <div className="row">
+                                <Route path={`${match.path}/details`}>
+                                    <div className="page">
+                                        <div className="row ">
 
-                                {Products.length && Products.slice(0, count).map(product => <div className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                                    <div className="card mb-4"> <img className="card-img-top w-80" src={product.img} />
-                                        <div className="card-body">
-                                            <h5 title={product.name}><b>{product.name.substring(0, 30)}...</b> </h5>
-                                            <div className="d-flex flex-row my-2 ">
-                                                <div className="text-muted">$ {product.price}</div>
-                                                <div className="text-muted"> Stock: {product.stock}</div>
-                                                <div className="ml-auto"> <button className="border rounded bg-white sign"><FontAwesomeIcon icon={faPlus} className="orange" style={{ width: "unset" }}></FontAwesomeIcon></button> <span className="px-sm-1">1 loaf</span> <button className="border rounded bg-white sign"><FontAwesomeIcon icon={faMinus} className="orange" style={{ width: "unset" }}></FontAwesomeIcon></button> </div>
-                                            </div> <button className="btn w-100 rounded my-2 amznbtn">Add to cart</button>
+                                            {Products.length && Products.slice(0, count).map(product => <div key={product.key} className="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
+                                                <div className="card mb-4"> <img className="card-img-top w-80" src={product.img} />
+                                                    <div className="card-body">
+                                                        <h5 title={product.name}><b>{product.name.substring(0, 30)}...</b> </h5>
+                                                        <div className="d-flex flex-row my-2 ">
+                                                            <div className="text-muted">$ {product.price}</div>
+                                                            <div className="text-muted"> Stock: {product.stock}</div>
+                                                            <div className="ml-auto"> <button className="border rounded bg-white sign"><FontAwesomeIcon icon={faPlus} className="orange" style={{ width: "unset" }}></FontAwesomeIcon></button> <span className="px-sm-1">1 loaf</span> <button className="border rounded bg-white sign"><FontAwesomeIcon icon={faMinus} className="orange" style={{ width: "unset" }}></FontAwesomeIcon></button> </div>
+                                                        </div> <Link to={`/shop/${product.key}`}><button className="btn w-100 rounded my-2 amznbtn">View Details</button></Link>
+                                                    </div>
+                                                </div>
+                                            </div>)}
+
                                         </div>
+                                        {location.pathname == `${match.url}/details` && <div className="d-flex justify-content-center">
+                                            {
+                                                count < Products.length && <button className="btn w-25 rounded my-2 " onClick={() => setcount(count + 9)}>Load More...</button>
+                                            }
+                                        </div>}
+
                                     </div>
-                                </div>)}
 
-                            </div>
-                            {location.pathname == `${match.url}/details` && <div className="d-flex justify-content-center">
-                                {
-                                    count < Products.length && <button className="btn w-25 rounded my-2 " onClick={() => setcount(count + 9)}>Load More...</button>
-                                }
-                            </div>}
+                                </Route>
+                                <Route path={`${match.path}/table`}>
 
-                        </Route>
-                        <Route path={`${match.path}/table`}>
-                            <div className="row">
-                                <EnhancedTable Products={Products} setProducts={setProducts}></EnhancedTable>
-                            </div>
-                        </Route>
-                        <Route path={`*`}>
-                            <div className="row">
-                                <EnhancedTable Products={Products} setProducts={setProducts}></EnhancedTable>
-                            </div>
-                        </Route>
-                    </Switch>
+                                    <div className="row page">
+                                        <EnhancedTable Products={Products} setProducts={setProducts}></EnhancedTable>
+                                    </div>
+                                </Route>
+                                <Route path={`${match.path}/`}>
+                                    <Redirect to={`${match.path}/table`}></Redirect>
+                                </Route>
+                            </Switch>
+                        </CSSTransition>
+                    </TransitionGroup>
                 </div>
             </section>
         </>

@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import { filterDuplicates } from './../../utilities/funcs';
 
 const Cart = ({ CartList }) => {
     const location = useLocation();
     const TAX_PERCENT = 5;
     const SHIPPING_COST = 0.5;
     let data = {
-        itemsOrdered: CartList.length,
+        itemsOrdered: filterDuplicates(CartList).length,
         itemsPrice: CartList.reduce((acc = 0, curr) => acc + Number(curr.price), 0).toFixed(2),
         ShippingCost: 0,
         Tax: 0,

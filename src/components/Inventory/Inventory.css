@@ -1,3 +1,33 @@
+
+
+.page {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+  }
+  
+  .page-enter {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  
+  .page-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .page-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .page-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
 * {
     box-sizing: border-box
 }
@@ -58,11 +88,7 @@ h6 {
     border: none
 }
 
-.btn {
-    border: 1px solid orange;
-    border-radius: 10px;
-    background-color: #fff
-}
+
 
 .btn:hover {
     color: #fff;
@@ -126,14 +152,14 @@ h6 {
     }
 
     .card {
-        width: 300px;
-        height: 330px;
-        border: none
+        width: 270px;
+        height: wrap-content;
+     
     }
 
     .card-img-top {
-        width: 295px;
-        height: 200px;
+        width:100%;
+       padding: 15%;
         border-radius: 10px
     }
 

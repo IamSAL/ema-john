@@ -20,7 +20,7 @@ function SingleProduct({ Products, setCartList }) {
         }
     }, [product])
     return (
-        <div>
+        <>
             <div className="super_container">
                 <header className="header" style={{ display: 'none' }}>
                     <div className="header_main">
@@ -186,7 +186,7 @@ function SingleProduct({ Products, setCartList }) {
                 </div>
             </div>
 
-        </div>
+        </>
     )
 }
 

@@ -3,6 +3,7 @@ import Search from './Search'
 import Product from './Product'
 import Cart from './Cart'
 
+
 const Shop = ({ Products, CartList, setCartList }) => {
     const [Pages, setPages] = useState([]);
     const [PerPage, setPerPage] = useState(10)
@@ -48,7 +49,7 @@ const Shop = ({ Products, CartList, setCartList }) => {
         if (SearchTerm) {
             if (matchedProducts.length) {
                 let pages = makePages(matchedProducts, PerPage)
-                console.log(pages)
+
                 setPages(pages)
                 setCurrentProducts(pages[0].data)
 

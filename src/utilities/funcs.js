@@ -10,3 +10,6 @@ export function shuffleArray(array) {
     }
     return array;
 }
+export const filterDuplicates = (arr) => {
+    return [...new Set(arr.map(prod => JSON.stringify(prod)))].map(prod => JSON.parse(prod))
+}
